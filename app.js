@@ -6,6 +6,7 @@ const parser = new xml2js.Parser();
 
 const job = () => {
   const time = new Date();
+  time.setHours ( time.getHours() + 2);
   let req = http.get("http://nextbike.net/maps/nextbike-official.xml", function(res) {
     let data = '';
     res.on('data', function(stream) {
@@ -33,8 +34,6 @@ const job = () => {
     });
   });
 }
-setInterval(job, 6*60*60*1000);
-/*
-cron.schedule('0/20 0 0 ? * 1/1 *', () => {
-  job();
-});*/
+job();
+setInterval(job, 60*60*1000);
+
